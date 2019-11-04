@@ -1,7 +1,6 @@
 package org.adobe.business.controller;
 
 import org.adobe.business.pojo.Test;
-import org.adobe.business.service.TestServiceImp;
 import org.adobe.business.service.TestServie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
