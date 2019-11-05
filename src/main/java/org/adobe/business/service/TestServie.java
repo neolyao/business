@@ -6,7 +6,7 @@ import org.adobe.business.pojo.Test;
 import java.util.List;
 
 public interface TestServie {
-    
+
     public List<Goods> getGoods();
     public List<Test> getTests();
 }
