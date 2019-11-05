@@ -13,5 +13,9 @@ public interface BrandDao {
 
     List<Brand> getAllBrand();
 
-    int insertBrand();
+    Integer insertBrand(Brand brand);
+
+    Integer deleteBrand(Integer id);
+
+    Integer updateBrand(Brand brand);
 }

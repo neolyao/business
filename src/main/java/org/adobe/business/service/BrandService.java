@@ -12,5 +12,10 @@ public interface BrandService {
 
     List<Brand> getAllBrand();
 
-    int insertBrand(Brand brand);
+    Integer insertBrand(Brand brand);
+
+    Integer deleteBrand(Integer id);
+
+    Integer updateBrand(Brand brand);
+
 }

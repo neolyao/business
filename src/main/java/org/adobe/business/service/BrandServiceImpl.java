@@ -23,7 +23,18 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public int insertBrand(Brand brand) {
-        return brandDao.insertBrand();
+    public Integer insertBrand(Brand brand) {
+        System.out.println(brand);
+        return brandDao.insertBrand(brand);
+    }
+
+    @Override
+    public Integer deleteBrand(Integer id) {
+        return brandDao.deleteBrand(id);
+    }
+
+    @Override
+    public Integer updateBrand(Brand brand) {
+        return brandDao.updateBrand(brand);
     }
 }
