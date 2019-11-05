@@ -8,6 +8,7 @@ public class Goods {
     private Float   goods_price;
     private String  goods_img;
 
+
     public Integer getGoods_id() {
         return goods_id;
     }
