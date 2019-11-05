@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.adobe.business.dao.BrandDao">
+    <resultMap id="Brand" type="org.adobe.business.pojo.Brand">
+        <id column="brand_id" jdbcType="INTEGER" property="brandId"/>
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+        <result column="brand_url" jdbcType="VARCHAR" property="brandUrl"/>
+        <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo"/>
+        <result column="brand_desc" jdbcType="VARCHAR" property="brandDesc"/>
+        <result column="brand_level" jdbcType="INTEGER" property="brandLevel"/>
+        <result column="brand_bool" jdbcType="BIT" property="brandBool"/>
+        <result column="brand_link" jdbcType="VARCHAR" property="brandLink"/>
+    </resultMap>
+
+    <select id="Base_Column_List">
+        brand_id,brand_name,brand_url,brand_logo,brand_desc,brand_level,brand_bool,brand_link
+    </select>
+
+    <select id="getAllBrand"  resultMap="Brand">
+        select * from t_brand
+    </select>
+
+    <select id="insertBrand" parameterType="org.adobe.business.pojo.Brand" resultType="java.lang.Integer">
+        insert into Brand (brand_id,brand_name,brand_url,brand_logo,brand_desc,brand_level,brand_bool,brand_link
+        )
+        values(#{brandId},#{brandName},#{brandUrl},#{brandLogo},#{brandDesc},#{brandLevel},#{brandBool},#{brandLink}
+        )
+    </select>
+</mapper>
