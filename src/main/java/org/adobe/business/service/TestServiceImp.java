@@ -1,6 +1,8 @@
 package org.adobe.business.service;
 
+import org.adobe.business.dao.GoodsDao;
 import org.adobe.business.dao.TestDao;
+import org.adobe.business.pojo.Goods;
 import org.adobe.business.pojo.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,14 @@ import java.util.List;
 @Service
 public class TestServiceImp implements TestServie{
     @Autowired
+    private GoodsDao goodsDao;
+    @Autowired
     private TestDao testDao;
+    @Override
+    public List<Goods> getGoods() {
+        return goodsDao.getGoods();
+    }
+
     @Override
     public List<Test> getTests(){
         return testDao.getTests();

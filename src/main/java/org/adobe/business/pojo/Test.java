@@ -1,6 +1,13 @@
 package org.adobe.business.pojo;
 
+/**
+ * @program: business
+ * @description: 项目测试类
+ * @author: niyao
+ * @create: 2019-11-05 11:34
+ */
 public class Test {
+
     private Integer id;
     private String  name;
 
