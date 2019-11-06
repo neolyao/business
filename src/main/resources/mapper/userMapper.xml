@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.adobe.business.dao.UserDao">
+
+    <!--  根据用户名查找角色-->
+    <select id="findByUserName"   parameterType="String" resultMap="getUserByName">
+        select tu.*,tr.* from t_user tu
+        left join t_user_role tur on tu.user_id=tur.uid
+        left join t_role  tr on tr.id= tur.rid
+        where user_name='${name}'
+    </select>
+
+    <resultMap id="getUserByName" type="org.adobe.business.pojo.User">
+        <id column="user_id" property="id"/>
+        <result column="user_name" property="name" />
+        <result column="user_pass" property="password" />
+        <result column="create_date" property="create_date" />
+        <result column="user_status" property="status" />
+        <collection property="roleList" javaType="ArrayList" ofType="org.adobe.business.pojo.Role">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="memo" property="memo"/>
+        </collection>
+    </resultMap>
+    <!--根据角色ID查找角色的权限-->
+    <select id="findRolesById" parameterType="Integer" resultMap="getRolesById">
+        select tr.*,tp.id perid,tp.url,tp.name pername from t_role tr
+        left join t_role_permission tpr on tr.id=tpr.rid
+        left join t_permission tp on tpr.pid=tp.id
+        where tr.id=${id}
+    </select>
+    <resultMap id="getRolesById" type="org.adobe.business.pojo.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="memo" property="memo"/>
+        <collection property="permissionList"  javaType="ArrayList" ofType="org.adobe.business.pojo.Permission">
+            <id column="perid" property="id"/>
+            <result column="url" property="url"/>
+            <result column="pername" property="name"/>
+        </collection>
+    </resultMap>
+</mapper>

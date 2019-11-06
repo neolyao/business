@@ -1,14 +1,16 @@
 package org.adobe.business.pojo;
 
+import java.io.Serializable;
+
 /**
  * @program: business
- * @description: 项目测试类
+ * @description: 权限
  * @author: niyao
- * @create: 2019-11-05 11:34
+ * @create: 2019-11-06 10:40
  */
-public class Test {
-
+public class Permission implements Serializable {
     private Integer id;
+    private String  url;
     private String  name;
 
     public Integer getId() {
@@ -19,19 +21,19 @@ public class Test {
         this.id = id;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Test{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
