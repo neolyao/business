@@ -2,8 +2,6 @@ package org.adobe.business.config;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
-import org.apache.shiro.web.util.WebUtils;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
