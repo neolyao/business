@@ -20,7 +20,7 @@ import java.util.Map;
  * @author: niyao
  * @create: 2019-11-06 13:01
  */
-@Configuration
+//@Configuration
 public class ShiroConfig {
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(){

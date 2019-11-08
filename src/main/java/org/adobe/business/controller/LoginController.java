@@ -21,6 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 public class LoginController {
+    /**
+     * 登录验证
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
     @RequestMapping("/login")
     public String login(String username,String password){
 
@@ -38,22 +44,10 @@ public class LoginController {
         }
 
     }
-    @RequestMapping("/hello")
-    public String hello(HttpServletResponse response){
-        return "hello";
-    }
-    @RequiresPermissions("user:add")
-    @RequestMapping("/add")
-    public String add(){
-        return "add success";
-    }
-
-    @RequiresPermissions("user:delete")
-    @RequestMapping("/delete")
-    public String delete(){
-        return "delete success";
-    }
-
+    /**
+     * logout
+     * @return
+     */
     @RequestMapping("/logout")
     public String logout(){
         SecurityUtils.getSubject().logout();

@@ -1,5 +1,8 @@
 package org.adobe.business.pojo;
 
+import lombok.Data;
+import org.apache.ibatis.type.Alias;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,41 +12,11 @@ import java.util.List;
  * @author: niyao
  * @create: 2019-11-06 10:37
  */
+@Data
+@Alias("Role")
 public class Role implements Serializable {
-
     private Integer id;
     private String  name;
     private String  memo;
     private List<Permission> permissionList;
-
-    public List<Permission> getPermissionList() {
-        return permissionList;
-    }
-
-    public void setPermissionList(List<Permission> permissionList) {
-        this.permissionList = permissionList;
-    }
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMemo() {
-        return memo;
-    }
-
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
 }
