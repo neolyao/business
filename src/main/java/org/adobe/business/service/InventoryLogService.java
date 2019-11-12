@@ -7,5 +7,5 @@ import org.adobe.business.pojo.InventoryLog;
 public interface InventoryLogService {
 
     //分页查询
-    PageInfo<InventoryLog> page(Integer pageNo, Integer pageSize, InventoryLog inventoryLog);
+    PageInfo<InventoryLog> page(Integer pageNo, Integer pageSize,String startDateTime,String endDateTime, InventoryLog inventoryLog);
 }

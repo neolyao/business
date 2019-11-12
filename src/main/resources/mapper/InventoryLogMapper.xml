@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.adobe.business.dao.InventoryLogDao">
+    <!--    查询所有商品     -->
+    <select id="find"  resultType="InventoryLog">
+        select
+            *
+        from
+            t_inventory_log
+        where
+            commodity_name like CONCAT('%',#{inventoryLog.commodityName},'%')
+        <if test="inventoryLog.orderNumber!=null and inventoryLog.orderNumber!='' ">
+            and order_number =#{inventoryLog.orderNumber}
+        </if>
+        <if test="startDateTime!=null and startDateTime!='' and endDateTime!=null and endDateTime!='' ">
+            and operation_time>=#{startDateTime} and operation_time &lt;= #{endDateTime}
+        </if>
+        <if test="startDateTime!=null and startDateTime!='' ">
+            and operation_time>=#{startDateTime}
+        </if>
+        <if test="endDateTime!=null and endDateTime!='' ">
+            and operation_time &lt;= #{endDateTime}
+        </if>
+
+    </select>
+
+</mapper>

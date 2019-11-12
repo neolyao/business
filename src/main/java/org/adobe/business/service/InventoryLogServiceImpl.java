@@ -19,8 +19,8 @@ public class InventoryLogServiceImpl implements InventoryLogService {
     private InventoryLogDao inventoryLogDao;
 
     @Override
-    public PageInfo<InventoryLog> page(Integer pageNo, Integer pageSize, InventoryLog inventoryLog) {
+    public PageInfo<InventoryLog> page(Integer pageNo, Integer pageSize, String startDateTime, String endDateTime, InventoryLog inventoryLog) {
         PageHelper.startPage(pageNo,pageSize);
-        return new PageInfo<InventoryLog>(inventoryLogDao.find(inventoryLog));
+        return new PageInfo<InventoryLog>(inventoryLogDao.find(startDateTime,endDateTime,inventoryLog));
     }
 }

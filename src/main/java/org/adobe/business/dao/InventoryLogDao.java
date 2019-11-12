@@ -2,13 +2,12 @@ package org.adobe.business.dao;
 
 
 import org.adobe.business.pojo.InventoryLog;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface InventoryLogDao {
 
-    @Select("select * from t_inventory_log")
-    List<InventoryLog> find(InventoryLog inventoryLog);
+    List<InventoryLog> find(@Param("startDateTime") String startDateTime,@Param("endDateTime") String endDateTime,@Param("inventoryLog") InventoryLog inventoryLog);
 
 }
