@@ -10,4 +10,5 @@ public interface GoodsService {
     void addGoods(Goods goods);
     void deleteGoodsById(Integer id);
     void updateGoods(Goods goods);
+    List<Goods> findGoodsByRepo(String repo);
 }

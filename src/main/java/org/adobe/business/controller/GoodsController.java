@@ -20,16 +20,16 @@ import java.util.Map;
  * @create: 2019-11-05 14:22
  */
 @RestController
+@RequestMapping("/goods")
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
     /**
-     *
-     * @param page
-     * @return
+     * @param page 分页信息
+     * @return 返回分页信息和商品
      */
-    @RequestMapping("/getGoods")
+    @RequestMapping(value = "/getGoods",method = RequestMethod.GET)
     public Map<String,Object> getGoods(@RequestBody Page page){
         PageHelper.startPage(page.getCurrentPage(),page.getPageSize());
         List<Goods> goodsList=goodsService.getGoods();
@@ -40,10 +40,43 @@ public class GoodsController {
         System.out.println(page);
         return map;
     }
+    /**
+     *
+     * @param keyword
+     * @param page
+     * @return
+     */
+    @RequestMapping("/search/{keyword}")
+    public Map<String,Object> seachGoods(@PathVariable("keyword") String keyword,@RequestBody Page page){
+        PageHelper.startPage(page.getCurrentPage(),page.getPageSize());
+        List<Goods> goodsList=goodsService.findGoodsByName(keyword);
+        PageInfo<Goods> pageInfo=new PageInfo<>(goodsList);
+        Map<String,Object> map=new HashMap<>();
+        map.put("total",pageInfo.getTotal());
+        map.put("list",goodsList);
+        System.out.println(page);
+        return map;
+    }
+    /**
+     * 根据ID删除
+     * @param id 商品id
+     */
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
+    public void deleteGoodsById(@PathVariable("id") Integer id){
+        goodsService.deleteGoodsById(id);
+    }
 
     /**
      *
-     * @param id
+     * @param goods 商品信息
+     */
+    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    public void updateGoods(Goods goods){
+        goodsService.updateGoods(goods);
+    }
+    /**
+     * 根据id 查询
+     * @param id 商品id
      * @return
      */
     @RequestMapping("/goods/{id}")
@@ -51,21 +84,30 @@ public class GoodsController {
         return goodsService.findGoodsById(id);
     }
 
-        /**
-         *
-         * @param keyword
-         * @param page
-         * @return
-         */
-        @RequestMapping("/search/{keyword}")
-        public Map<String,Object> seachGoods(@PathVariable("keyword") String keyword,@RequestBody Page page){
-            PageHelper.startPage(page.getCurrentPage(),page.getPageSize());
-            List<Goods> goodsList=goodsService.findGoodsByName(keyword);
-            PageInfo<Goods> pageInfo=new PageInfo<>(goodsList);
-            Map<String,Object> map=new HashMap<>();
-            map.put("total",pageInfo.getTotal());
-            map.put("list",goodsList);
-            System.out.println(page);
-            return map;
-        }
+    /**
+     * 添加商品
+     * @param goods
+     */
+    @RequestMapping("/add")
+    public void addGoods(Goods goods){
+        goodsService.addGoods(goods);
+    }
+
+    /**
+     * 根据商品库查询
+     * @param repo
+     * @param page
+     * @return
+     */
+    @RequestMapping("/repo/{repo}")
+    public Map<String,Object> getGoodsByRepo(@PathVariable("repo")String repo,@RequestBody Page page){
+        PageHelper.startPage(page.getCurrentPage(),page.getPageSize());
+        List<Goods> goodsList=goodsService.findGoodsByRepo(repo);
+        PageInfo<Goods> pageInfo=new PageInfo<>(goodsList);
+        Map<String,Object> map=new HashMap<>();
+        map.put("total",pageInfo.getTotal());
+        map.put("list",goodsList);
+        System.out.println(page);
+        return map;
+    }
 }

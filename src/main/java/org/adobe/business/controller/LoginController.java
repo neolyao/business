@@ -5,12 +5,11 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 public class LoginController {
+    private Logger logger=LoggerFactory.getLogger(this.getClass());
     /**
      * 登录验证
      * @param username 用户名
@@ -34,6 +34,7 @@ public class LoginController {
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         try{
             subject.login(token);
+            logger.info(username+"登录");
             return "success";
         }catch (UnknownAccountException e){
             return e.getMessage();

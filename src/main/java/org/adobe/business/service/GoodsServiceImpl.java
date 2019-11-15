@@ -68,4 +68,14 @@ public class GoodsServiceImpl implements GoodsService {
     public void updateGoods(Goods goods) {
             goodsDao.updateGoods(goods);
     }
+
+    /**
+     * 根据存放区查询商品
+     * @param repo
+     * @return
+     */
+    @Override
+    public List<Goods> findGoodsByRepo(String repo) {
+        return goodsDao.findGoodsByRepo(repo);
+    }
 }

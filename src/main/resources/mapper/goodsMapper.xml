@@ -13,7 +13,11 @@
     </select>
     <!--    根据名称模糊查询    -->
     <select id="findGoodsByName" parameterType="String"  resultType="Goods">
-        select * form t_goods where goods_name like '%${name}%'
+        select * from t_goods where goods_name like '%${name}%'
+    </select>
+    <!--    根据仓库查询    -->
+    <select id="findGoodsByRepo" parameterType="String"  resultType="Goods">
+        select * from t_goods where goods_repo=#{repo}
     </select>
     <!--    添加商品    -->
     <insert id="addGoods" parameterType="Goods" >

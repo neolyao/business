@@ -17,4 +17,5 @@ public class Goods implements Serializable {
     private Integer goodsCount;
     private Float   goodsPrice;
     private String  goodsImg;
+    private String  goodsRepo;
 }
