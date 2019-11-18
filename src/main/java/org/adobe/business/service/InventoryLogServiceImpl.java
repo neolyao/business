@@ -23,4 +23,13 @@ public class InventoryLogServiceImpl implements InventoryLogService {
         PageHelper.startPage(pageNo,pageSize);
         return new PageInfo<InventoryLog>(inventoryLogDao.find(startDateTime,endDateTime,inventoryLog));
     }
+
+    @Override
+    public boolean delete(Integer id) {
+        Integer num = inventoryLogDao.delete(id);
+        if(num==1){
+            return true;
+        }
+        return false;
+    }
 }

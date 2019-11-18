@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.adobe.business.dao.OrderAddressDao">
+    <select id="find"  resultType="OrderAddress">
+        select
+            *
+        from
+            t_order_address
+        where
+            1=1
+        <if test="orderAddress.name!=null and orderAddress.name!=''">
+            and name =#{orderAddress.name}
+        </if>
+        <if test="orderAddress.parentId!=null and orderAddress.parentId!=''">
+            and parent_id =#{orderAddress.parentId}
+        </if>
+        <if test="orderAddress.type!=null and orderAddress.type!=''">
+            and type =#{orderAddress.type}
+        </if>
+    </select>
+</mapper>

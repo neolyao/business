@@ -8,4 +8,7 @@ public interface InventoryLogService {
 
     //分页查询
     PageInfo<InventoryLog> page(Integer pageNo, Integer pageSize,String startDateTime,String endDateTime, InventoryLog inventoryLog);
+
+    //删除
+    boolean delete(Integer id);
 }

@@ -3,7 +3,6 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.adobe.business.dao.InventoryLogDao">
-    <!--    查询所有商品     -->
     <select id="find"  resultType="InventoryLog">
         select
             *
@@ -22,6 +21,12 @@
         </if>
         <if test="endDateTime!=null and endDateTime!='' ">
             and operation_time &lt;= #{endDateTime}
+        </if>
+        <if test="inventoryLog.inventoryType!=null and inventoryLog.inventoryType!='' and inventoryLog.inventoryType !='-1' ">
+            and inventory_type like CONCAT('%',#{inventoryLog.inventoryType},'%')
+        </if>
+        <if test="inventoryLog.operationType!=null and inventoryLog.operationType!='' ">
+            and operation_type &lt;= #{inventoryLog.operationType}
         </if>
 
     </select>
