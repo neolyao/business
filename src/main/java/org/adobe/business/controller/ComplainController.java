@@ -31,4 +31,22 @@ public class ComplainController {
                                        Complain complain){
         return complainService.page(pageNo,pageSize,complain);
     }
+
+    /**
+     * 删除多个
+     * @param id 投诉id
+     * @return 是否成功
+     */
+    @RequestMapping("/deletes")
+    public boolean deletes(String id){
+        String[] ids =id.split(",");
+        boolean deleteStatic;
+        for (String deleteId : ids){
+            deleteStatic =complainService.delete(Integer.valueOf(deleteId));
+            if(!deleteStatic){
+                return false;
+            }
+        }
+        return true;
+    }
 }

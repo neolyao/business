@@ -18,4 +18,13 @@ public class ComplainServiceImpl implements ComplainService {
         PageHelper.startPage(pageNo,pageSize);
         return new PageInfo<Complain>(complainDao.find(complain));
     }
+
+    @Override
+    public boolean delete(Integer id) {
+        Integer num = complainDao.delete(id);
+        if(num==1){
+            return true;
+        }
+        return false;
+    }
 }
