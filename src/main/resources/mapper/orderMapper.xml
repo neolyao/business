@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.adobe.business.dao.OrderDao">
+    <resultMap id="orders" type="org.adobe.business.pojo.Order">
+        <id column="order_id" property="orderId"></id>
+        <result column="store_id" property="storeId"></result>
+        <result column="order_sequence" property="orderSequence"></result>
+        <result column="serial_number" property="serialNumber"></result>
+        <result column="order_number" property="orderNumber"></result>
+        <result column="commodity_id" property="commodityId"></result>
+        <result column="logistics_id" property="logisticsId"></result>
+
+        <result column="payment_way" property="paymentWay"></result>
+        <result column="user_id" property="userId"></result>
+
+        <result column="serial_number" property="serialNumber"></result>
+        <result column="commodity_number" property="commodityNumber"></result>
+        <result column="source" property="source"></result>
+        <result column="consignee_id" property="consigneeId"></result>
+
+        <result column="heading_code" property="headingCode"></result>
+        <result column="buyer_message" property="buyerMessage"></result>
+        <result column="seller_message" property="sellerMessage"></result>
+        <result column="invoice_type" property="invoiceType"></result>
+        <result column="invoice_title" property="invoiceTitle"></result>
+        <result column="invoice_content" property="invoiceContent"></result>
+
+        <result column="stockout_dispose" property="stockoutDispose"></result>
+        <result column="delay_addressee_boolean" property="delayAddresseeBoolean"></result>
+        <result column="delay_addressee_time" property="delayAddresseeTime"></result>
+        <result column="delay_addressee_operator" property="delayAddresseeOperator"></result>
+        <result column="audit_type" property="auditType"></result>
+        <association property="logistics"   javaType="org.adobe.business.pojo.Logistics">
+            <id column="logistics_id" property="logisticsId"/>
+            <result column="logistics_name" property="logisticsName"/>
+        </association>
+        <association property="user"   javaType="org.adobe.business.pojo.User">
+            <id column="user_id" property="id"/>
+            <result column="user_name" property="name"/>
+        </association>
+        <association property="goods"   javaType="org.adobe.business.pojo.Goods">
+            <id column="goods_id" property="goodsId"/>
+            <result column="goods_img" property="goodsImg"/>
+            <result column="goods_desc" property="goodsDesc"/>
+            <result column="goods_price" property="goodsPrice"/>
+        </association>
+        <association property="orderStatus"   javaType="org.adobe.business.pojo.OrderStatus">
+            <id column="order_status_id" property="orderStatusId"/>
+            <result column="store_id" property="storeId"/>
+            <result column="order_sequence" property="orderSequence"/>
+            <result column="handlers" property="handlers"/>
+            <result column="handlers_time" property="handlersTime"/>
+            <result column="order_status" property="orderStatus"/>
+            <result column="order_handlers_time" property="orderHandlersTime"/>
+            <result column="payment_status" property="paymentStatus"/>
+            <result column="payment_handlers_time" property="paymentHandlersTime"/>
+            <result column="shipments_status" property="shipmentsStatus"/>
+            <result column="shipments_handlers_time" property="shipmentsHandlersTime"/>
+            <result column="sales_return_status" property="salesReturnStatus"/>
+            <result column="sales_return_time" property="salesReturnTime"/>
+            <result column="order_status_remark" property="orderStatusRemark"/>
+        </association>
+
+    </resultMap>
+
+    <resultMap id="orderList" type="org.adobe.business.pojo.Order">
+        <id column="order_id" property="orderId"></id>
+        <result column="store_id" property="storeId"></result>
+        <result column="order_sequence" property="orderSequence"></result>
+        <result column="serial_number" property="serialNumber"></result>
+        <result column="order_number" property="orderNumber"></result>
+        <result column="commodity_id" property="commodityId"></result>
+        <result column="logistics_id" property="logisticsId"></result>
+
+        <result column="payment_way" property="paymentWay"></result>
+        <result column="user_id" property="userId"></result>
+
+        <result column="serial_number" property="serialNumber"></result>
+        <result column="commodity_number" property="commodityNumber"></result>
+        <result column="source" property="source"></result>
+        <result column="consignee_id" property="consigneeId"></result>
+
+        <result column="heading_code" property="headingCode"></result>
+        <result column="buyer_message" property="buyerMessage"></result>
+        <result column="seller_message" property="sellerMessage"></result>
+        <result column="invoice_type" property="invoiceType"></result>
+        <result column="invoice_title" property="invoiceTitle"></result>
+        <result column="invoice_content" property="invoiceContent"></result>
+
+        <result column="stockout_dispose" property="stockoutDispose"></result>
+        <result column="delay_addressee_boolean" property="delayAddresseeBoolean"></result>
+        <result column="delay_addressee_time" property="delayAddresseeTime"></result>
+        <result column="delay_addressee_operator" property="delayAddresseeOperator"></result>
+        <result column="audit_type" property="auditType"></result>
+        <association property="logistics"   javaType="org.adobe.business.pojo.Logistics">
+            <id column="logistics_id" property="logisticsId"/>
+            <result column="logistics_name" property="logisticsName"/>
+        </association>
+        <association property="user"   javaType="org.adobe.business.pojo.User">
+            <id column="user_id" property="id"/>
+            <result column="user_name" property="name"/>
+        </association>
+        <association property="goods"   javaType="org.adobe.business.pojo.Goods">
+            <id column="goods_id" property="goodsId"/>
+            <result column="goods_img" property="goodsImg"/>
+            <result column="goods_desc" property="goodsDesc"/>
+            <result column="goods_price" property="goodsPrice"/>
+        </association>
+        <association property="orderStatus"   javaType="org.adobe.business.pojo.OrderStatus">
+            <id column="order_status_id" property="orderStatusId"/>
+            <result column="store_id" property="storeId"/>
+            <result column="order_sequence" property="orderSequence"/>
+            <result column="handlers" property="handlers"/>
+            <result column="handlers_time" property="handlersTime"/>
+            <result column="order_status" property="orderStatus"/>
+            <result column="order_handlers_time" property="orderHandlersTime"/>
+            <result column="payment_status" property="paymentStatus"/>
+            <result column="payment_handlers_time" property="paymentHandlersTime"/>
+            <result column="shipments_status" property="shipmentsStatus"/>
+            <result column="shipments_handlers_time" property="shipmentsHandlersTime"/>
+            <result column="sales_return_status" property="salesReturnStatus"/>
+            <result column="sales_return_time" property="salesReturnTime"/>
+            <result column="order_status_remark" property="orderStatusRemark"/>
+        </association>
+
+    </resultMap>
+
+    <select id="getOrderList" resultMap="orderList" >
+ select * from
+        t_order t1,
+        t_logistics t2,
+        t_user t3,
+        t_goods t4,
+        t_order_status t5
+        where
+        t1.logistics_id=t2.logistics_id and
+        t1.store_id=#{brandid} and
+        t1.user_id=t3.user_id and
+        t1.commodity_id=t4.goods_id and
+        t5.store_id=t1.store_id and
+        t5.order_sequence=t1.order_sequence;
+
+    </select>
+
+    <select id="getOrder" resultMap="orders">
+        select * from
+        t_order t1,
+        t_logistics t2,
+        t_user t3,
+        t_goods t4,
+        t_order_status t5
+        where
+        t1.logistics_id=t2.logistics_id and
+        t1.order_id=#{orderId} and
+        t1.user_id=t3.user_id and
+        t1.commodity_id=t4.goods_id and
+        t5.store_id=t1.store_id and
+        t5.order_sequence=t1.order_sequence;
+    </select>
+</mapper>
